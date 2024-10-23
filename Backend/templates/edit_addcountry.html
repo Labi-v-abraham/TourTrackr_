@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Country</h4>
+                    <p class="card-description"> Edit Country </p>
+                    <form class="forms-sample" method="post" action="{% url 'update_country' dataid=country.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleCountry">country</label>
+                        <input type="text" class="form-control" id="exampleCountry" placeholder="Add country" name="country" value="{{country.Country}}">
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{country.Image.url}}" width="100px" height="100px"><br>
+                        <input type="file" name="img" >
+                      </div>
+                      <div class="form-group">
+                        <label for="examplePlace">No of place </label>
+                        <input type="text" class="form-control" id="examplePlace" placeholder="No of place" name="no" value="{{country.No_tour_place}}">
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

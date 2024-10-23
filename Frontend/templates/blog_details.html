@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+		<section id="blog" class="blog">
+			<div class="container">
+				<div class="blog-details">
+						<div class="gallary-header text-center">
+							<h2>
+								{{blog.title}}
+							</h2>
+							<p style="text-align:right">
+								created by {{blog.user}}
+							</p>
+						</div><!--/.gallery-header-->
+
+						<div class="blog-content">
+							<div class="row">
+                                <div>
+                                    <img src="{{blog.image1.url}}" width="580px">
+                                    <img src="{{blog.image2.url}}" width="580px">
+                                </div><br>
+                                <div>
+									<p>{{blog.summary}}</p><br><br>
+                                    <p>{{blog.detail}}</p>
+                                </div>
+
+							</div><!--/.row-->
+						</div><!--/.blog-content-->
+					</div><!--/.blog-details-->
+				</div><!--/.container-->
+
+		</section><!--/.blog-->
+
+</body>
+</html>
+{% endblock %}

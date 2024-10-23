@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body bgcolor="skyblue">
+<style>
+    body{
+     background-color: skyblue;
+    }
+    #page{
+        background-color: skyblue;
+    }
+    #form{
+        background-color: #fff;
+        width: 700px;
+        height: fit-content;
+        margin-top: 40px;
+        margin-left: 300px;
+
+
+    }
+    #img{
+        width: 700px;
+        height: 200px;
+    }
+    #text{
+        text-align: center;
+    }
+    #quote{
+        text-align: center;
+        font-size: small;
+    }
+    #order{
+        margin-left: 10px;
+        list-style: none;
+    }
+    #fname{
+        margin-left: 120px;
+        height: 35px;
+        width: 200px;
+
+    }
+    #lname{
+        height: 35px;
+        width: 200px;
+    }
+    #email{
+        margin-left: 100px;
+        width: 400px;
+        height: 35px;
+    }
+    #room{
+        margin-left: 120px;
+        width: 400px;
+        height: 40px;
+    }
+    #guest{
+        margin-left: 110px;
+        width: 200px;
+        height: 40px;
+
+    }
+    #date{
+        margin-left: 120px;
+        height: 40px;
+
+    }
+    #time{
+        height: 40px;
+    }
+    #ap{
+        height: 40px;
+    }
+    #out{
+        margin-left: 97px;
+        height: 40px;
+    }
+    #yes{
+        margin-left: 110px;
+    }
+    #no{
+        margin-left: 165px;
+    }
+    #flight{
+        margin-left: 70px;
+        width: 400px;
+        height: 35px;
+    }
+    #request{
+        margin-left: 160px;
+        width: 400px;
+        margin-top: -20px;
+    }
+    #fno{
+        margin-left: 120px;
+
+    }
+    button{
+        margin-left: 280px;
+    }
+    #tprice{
+    margin-left: 125px;
+    }
+</style>
+    <div id="page">
+        <div id="form">
+            <form method="post" action="{% url 'save_book_flight'  %}">
+                {% csrf_token %}
+                <img src="{% static 'images/gallary/plane5.6388d94a038716.80328162.png' %}" alt="Hotel booking" id="img">
+                <h3 id="text">Flight BOOKING</h3>
+                <p id="quote">Experience something new every moment</p><br>
+                <ul id="order">
+                    <li>
+                        <input type="hidden" name="user" value="{{request.session.Username}}">
+                    </li>
+<!--                    <li>-->
+<!--                        <input type="hidden" name="hotel"  value="{{flight.Flight_name}}">-->
+<!--                    </li>-->
+                    <li>
+                        <div>
+                            <label >Name</label>
+
+                                <input type="text" name="fname" id="fname" placeholder="First name">
+
+                                <input type="text" name="lname" id="lname" placeholder="Last name">
+
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Email ID</label>
+
+                                <input type="email" name="email" id="email" placeholder="eg:email@gmail.com">
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Class</label>
+
+                                <select name="Class" id="room">
+                                    <option value="economy">economy</option>
+                                    <option value="business">business</option>
+                                    <option value="first class">first class</option>
+
+
+                                </select>
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Adults</label>
+
+                                <input type="number" name="guests" id="guest" min="0" max="10" value="0">
+
+<!--                             <label for="">child</label>-->
+
+<!--                                <input type="number" name="child" id="" min="0" max="10" value="0">-->
+
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for=""> Date</label>
+
+                                <input type="date" name="date" id="date" value="29 -12 - 2023 " placeholder="29 -12 - 2023 " data-toggle="datepicker">
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div >
+                            <label for="">Flight Name</label>
+
+                            <input type="text" name="flight" id="flight" value="{{flight.Flight_name}}">
+
+                        </div>
+                    </li><br>
+
+
+                    <li>
+                        <div >
+                            <label for="">Flight</label>
+
+                                <input type="text" name="fno" id="fno" value="{{flight.Flight_No}}">
+
+                        </div>
+                    </li><br>
+
+                    <li>
+                        <label>Price</label>
+                        <input type="hidden" name="price" id="price" value="{{flight.Charge}}">
+                        <input type="text" name="tprice" id="tprice">
+                         <input type="hidden" name="time" value="{{flight.Depature_time}}">
+                    </li>
+                </ul>
+                <button class="btn btn-primary"  id="btn" type="submit">Confirm</button><br><br>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#guest").change(function(){
+                y = document.getElementById("price").value
+                z = document.getElementById("guest").value
+                result = (y*z)
+
+                document.getElementById("tprice").value = result
+
+            })
+        })
+    </script>
+
+
+
+
+</body>
+</html>

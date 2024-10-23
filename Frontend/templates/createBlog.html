@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+		<section id="blog" class="blog" style="background-color:  #949398FF">
+			<div class="container">
+				<div class="blog-details">
+						<div class="gallary-header text-center">
+							<h2 style="color:white">
+								Create Your Own Blog
+							</h2>
+							<p>
+								Explore your Travel Experience with world
+							</p>
+						</div>
+						<div style="width:600px;height:fit-content;border: 2px solid black;margin-top:20px;margin-left:270px;padding-left:40px;padding-top:20px;background-color: #FCF6F5FF;">
+							<div>
+								<form method="post" action="{% url 'save_createBlog' %}" enctype="multipart/form-data">
+									{% csrf_token %}
+									<input type="hidden" name="user" value="{{request.session.Username}}">
+									<diV class="container" >
+										<label style="margin-left:200px">Add Photo</label><br>
+										<input type="file" name="photo" style="width: 480px;height:40px;border: 2px solid black;border-radius: 5px;text-align:center" ><br>
+										<input type="file" name="photo1" style="width: 480px;height:40px;border: 2px solid black;border-radius: 5px;text-align:center" >
+									</diV><br>
+
+									<diV class="container" style="display:none">
+										<label style="margin-left:220px">Date</label><br>
+										<input type="text" name="date" value="{{today}}" style="width: 480px;height:40px;border: 2px solid black;border-radius: 5px;text-align:center">
+									</diV>
+									<diV class="container">
+										<label style="margin-left:220px">Title</label><br>
+										<input type="text" name="title" placeholder="Title" style="width: 480px;height:40px;border: 2px solid black;border-radius: 5px;text-align:center">
+									</diV><br>
+
+									<diV class="container">
+										<label style="margin-left:207px">Summary</label><br>
+										<textarea name="summary"  style="width: 480px;height:80px;border: 2px solid black;border-radius: 5px;" placeholder="summary">
+
+										</textarea>
+
+									</diV><br>
+									<diV class="container">
+										<label style="margin-left:170px">Write Your Experience</label><br>
+										<textarea name="write"  style="width: 480px;height:150px;border: 2px solid black;border-radius: 5px;" placeholder="summary">
+
+										</textarea>
+
+									</diV><br>
+									<div>
+										<button class="btn btn-danger" type="submit" style="margin-left:230px">
+											Create
+										</button>
+									</div><br>
+
+								</form>
+							</div>
+
+						</div>
+
+
+					<!--/.gallery-header-->
+<!--					<div style="margin-left:1050px">-->
+<!--						<form action="{% url 'createBlog' %}">-->
+<!--							<button class="btn btn-primary btn">-->
+<!--								Create Blog-->
+<!--							</button>-->
+<!--						</form>-->
+<!--					</div>-->
+<!--						<div class="blog-content">-->
+<!--							<div class="row">-->
+
+<!--								<div class="col-sm-4 col-md-4">-->
+<!--									<div class="thumbnail">-->
+<!--										<h2>trending news <span>15 november 2017</span></h2>-->
+<!--										<div class="thumbnail-img">-->
+<!--											<img src="#" alt="blog-img">-->
+<!--											<div class="thumbnail-img-overlay"></div>&lt;!&ndash;/.thumbnail-img-overlay&ndash;&gt;-->
+
+<!--										</div>&lt;!&ndash;/.thumbnail-img&ndash;&gt;-->
+
+<!--										<div class="caption">-->
+<!--											<div class="blog-txt">-->
+<!--												<h3>-->
+<!--													<a href="#">-->
+<!--														Discover on beautiful weather, Fantastic foods and historical place in Prag-->
+<!--													</a>-->
+<!--												</h3>-->
+<!--												<p>-->
+<!--													Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam-->
+<!--												</p>-->
+<!--												<a href="#">Read More</a>-->
+<!--											</div>&lt;!&ndash;/.blog-txt&ndash;&gt;-->
+<!--										</div>&lt;!&ndash;/.caption&ndash;&gt;-->
+<!--									</div>&lt;!&ndash;/.thumbnail&ndash;&gt;-->
+
+<!--								</div>&lt;!&ndash;/.col&ndash;&gt;-->
+
+
+<!--							</div>&lt;!&ndash;/.row&ndash;&gt;-->
+<!--						</div>&lt;!&ndash;/.blog-content&ndash;&gt;-->
+					</div><!--/.blog-details-->
+				</div><!--/.container-->
+
+		</section><!--/.blog-->
+
+<script>
+        // Get today's date
+        var today = new Date();
+
+        // Format the date as a string (you can customize the format as needed)
+        var dateString = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Display the date in the specified HTML element
+        document.getElementById('date').textContent = dateString;
+    </script>
+</body>
+</html>
+{% endblock %}

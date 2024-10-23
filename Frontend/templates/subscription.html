@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="black">
+<div style="text-align:center;">
+    <div style="width: 350px; height: fit-content;border: 2px solid rgb(255, 149, 0);margin-left: 460px;border-radius: 13px;margin-top:50px;">
+       <form method="post" action="{% url 'sub_success' %}" target="_blank">
+           {% csrf_token %}
+           <h2 style="color: transparent;background-image: url(https://cdn.recu.me/i/eaddde13a2d80f2499a7310300f06cc78486aeaa1fda266d50276f22cc87264b.gif); background-size: cover;background-clip: text;-webkit-background-clip: text;color: transparent;animation: colorChange 5s infinite alternate;">SUBSCRIPTION</h2>
+           <input name="user" type="hidden" value="{{request.session.Username}}">
+           <h1 style="color: #fff;">RS. 399/-</h1>
+           <p style="color: #333;">lifetime subscription</p><hr style="border-top: 1px solid #333;;width: 300px;"><br>
+           <ul style="text-align:left">
+               <li style="color:#fff;margin-bottom: 5px;">One time payment</li>
+               <li style="color:#fff;margin-bottom: 5px;">Get exciting offers</li>
+               <li style="color:#fff;margin-bottom: 5px;">Special packages</li>
+               <li style="color:#fff;margin-bottom: 5px;">Discounts</li>
+           </ul><br>
+           <hr style="border-top: 1px solid #333;color:#333;width: 300px">
+           <p style="color: #333;">pay 399 one time</p>
+           <button type="submit" id="rzp-button1" style="background-color: rgb(255, 149, 0);color: black;width:150px;height: 40px;border-radius: 10px;">Get it now!</button>
+           <br><br>
+
+       </form>
+<!--        <button id="rzp-button1">Pay with Razorpay</button>-->
+
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_ynuFz5xXYFsQ5O", // Enter the Key ID generated from the Dashboard
+    "amount": "39900", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "TourTrackr", //your business name
+    "description": "Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning')
+            </script>
+            {% elif i.tags == 'error' %}
+                 <script>
+                    swal('{{i}}','','error')
+                 </script>
+            {% elif i.tags == 'success' %}
+                 <script>
+                     swal('{{i}}','','success')
+                 </script>
+            {% elif i.tags == 'question' %}
+                 <script>
+                     swal('{{i}}','','question')
+                 </script>
+        {% else %}
+            <script>
+                swal('{{i}}','','info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>

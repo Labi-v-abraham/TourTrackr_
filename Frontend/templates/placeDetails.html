@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+		<section id="gallery" class="gallery">
+			<div class="container">
+				<div class="gallery-details">
+					<div class="gallary-header text-center">
+                        {% for details in details %}
+						<h2>
+							 {{details.Place}}
+						</h2>
+<!--						<p>-->
+<!--							Where do you wanna go? How much you wanna explore?-->
+<!--						</p>-->
+					</div><!--/.gallery-header-->
+					<div class="gallery-box">
+						<div class="gallery-content">
+						  	<div class="filtr-container">
+						  		<div class="row">
+
+									<div style="text-align: left;width: 400px;height: 300px;">
+											<img src="{{details.Image.url}}" alt="portfolio image" width="400px" style="height :300px" /><br><br>
+									</div>
+									<div style="text-align: left;width: 800px;height: fit-content;position: absolute;right:0;top:230px;">
+                                            <p style="padding-right:30px;padding-left:10px;">{{details.Details}}</p>
+									</div>
+
+
+
+
+								</div>
+						  	</div><!-- /.filtr-container-->
+						</div><!-- /.gallery-content -->
+					</div><!--/.galley-box-->
+				</div><!--/.gallery-details-->
+			</div><!--/.container-->
+				<h3 style="text-align: center;">Hotels in {{details.Place}}</h3>
+				{% endfor %}
+
+		</section><!--/.gallery-->
+		<section style="background-color:#949398FF;">
+			<div class="container">
+
+
+
+				<div>
+					<div>
+<!--						{% for hotel in hotel %}-->
+<!--						<h3>Hotels in {{hotel.Place}}</h3><br>-->
+<!--						{% endfor %}-->
+
+						{% for hotel in hotel %}
+						<table width="100%" style="background-color:#fff;">
+
+
+
+
+							<tr>
+								<td width="200px">
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">
+									<img src="{{hotel.Image1.url}}" width="200px" height="250px">
+									</a>
+								</td>
+								<td style="text-align:left;padding-left:50px;" >
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">
+									<h4>{{hotel.Hotel}}</h4>
+									</a><br><br>
+									<h5 class="fa fa-star"> {{hotel.Rating}} Star Rating</h5>
+									<h5 class="fa fa-cutlery" style="margin-left: 50px;"> include</h5><br><br>
+									<p class="fa fa-map-marker">{{hotel.Location}}</p>
+								</td>
+								<td>
+<!--									<h4>Rs.{{hotel.price}}</h4><br>-->
+<!--									<p>per night</p>-->
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">Show Deatils</a>
+								</td>
+
+							</tr>
+							<br>
+
+
+						</table>
+						<hr>
+						{% endfor %}
+
+					</div>
+				</div>
+
+
+
+			</div>
+		</section>
+
+</body>
+</html>
+{% endblock %}

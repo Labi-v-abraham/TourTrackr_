@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Display Country</h4>
+<!--                    <p class="card-description"> Add class <code>.table-striped</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> Country </th>
+                            <th> Image </th>
+                            <th> No of tour place </th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for country in country %}
+                          <tr>
+                            <td>{{country.Country}}</td>
+                            <td>
+                              <img src="{{country.Image.url}}" width="100px" height="100px">
+                            </td>
+                            <td>{{country.No_tour_place}}</td>
+                            <td>
+                              <form action="{% url 'edit_country' dataid=country.id %}">
+                                <button class="btn btn-danger">Edit</button>
+                              </form>
+                            </td>
+                            <td>
+                              <form action="{% url 'delete_country' dataid=country.id %}">
+                                <button class="btn btn-light">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning')
+            </script>
+            {% elif i.tags == 'error' %}
+                 <script>
+                    swal('{{i}}','','error')
+                 </script>
+            {% elif i.tags == 'success' %}
+                 <script>
+                     swal('{{i}}','','success')
+                 </script>
+            {% elif i.tags == 'question' %}
+                 <script>
+                     swal('{{i}}','','question')
+                 </script>
+        {% else %}
+            <script>
+                swal('{{i}}','','info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
+{% endblock %}

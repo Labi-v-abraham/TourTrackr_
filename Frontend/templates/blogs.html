@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+		<section id="blog" class="blog">
+			<div class="container">
+				<div class="blog-details">
+						<div class="gallary-header text-center">
+							<h2>
+								Blogs
+							</h2>
+							<p>
+								Explore your Travel Experience with world
+							</p>
+						</div><!--/.gallery-header-->
+					<div style="margin-left:1050px">
+						<form action="{% url 'createBlog' %}">
+							<button class="btn btn-primary btn">
+								Create Blog
+							</button>
+						</form>
+					</div>
+						<div class="blog-content">
+							<div class="row">
+									{% for blog in blog %}
+								<div class="col-sm-4 col-md-4">
+									<div class="thumbnail">
+										<h2>Blog by {{blog.user}}   <span style="text-align:right;">{{blog.date}}</span></h2>
+										<div class="thumbnail-img">
+											<img src="{{blog.image1.url}}" alt="blog-img" width="200px" height="150px">
+											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
+
+										</div><!--/.thumbnail-img-->
+
+										<div class="caption">
+											<div class="blog-txt">
+												<h3>
+													<a href="#">
+														{{blog.title}}
+													</a>
+												</h3>
+												<p>
+													{{blog.summary}}
+												</p>
+												<a href="{% url 'blog_details' dataid=blog.id %}">Read More </a>
+
+											</div><!--/.blog-txt-->
+										</div><!--/.caption-->
+									</div><!--/.thumbnail-->
+
+								</div><!--/.col-->
+									{% endfor %}
+
+
+							</div><!--/.row-->
+						</div><!--/.blog-content-->
+					</div><!--/.blog-details-->
+				</div><!--/.container-->
+
+		</section><!--/.blog-->
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning')
+            </script>
+            {% elif i.tags == 'error' %}
+                 <script>
+                    swal('{{i}}','','error')
+                 </script>
+            {% elif i.tags == 'success' %}
+                 <script>
+                     swal('{{i}}','','success')
+                 </script>
+            {% elif i.tags == 'question' %}
+                 <script>
+                     swal('{{i}}','','question')
+                 </script>
+        {% else %}
+            <script>
+                swal('{{i}}','','info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

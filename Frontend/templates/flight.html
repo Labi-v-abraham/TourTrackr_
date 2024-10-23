@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+		<section id="service" class="service" style="background-image: url('images/home/banner.jpg');">
+			<div class="container">
+
+				<div class="service-counter text-center">
+
+					<div>
+<!--						{% for hotel in hotel %}-->
+<!--						<h3>Hotels in {{hotel.Place}}</h3><br>-->
+<!--						{% endfor %}-->
+						<h2>Flights</h2><br><br>
+						<hr>
+						{% for flight in flight %}
+						<table width="100%">
+
+
+							<tr >
+								<td width="300px">
+									<p>Flight</p><br>
+									<h2 class="fa fa-plane"></h2>
+									<h3>{{flight.Flight_name}}</h3>
+								</td>
+								<td>
+									<p>Departure</p><br>
+									<h4>{{flight.Depature_time}}</h4>
+									<p>{{flight.From_City}},{{flight.From_country}}</p>
+								</td>
+								<td>
+									<p>Arrival</p><br>
+									<h4>{{flight.Landing_time}}</h4>
+									<p>{{flight.To_city}},{{flight.To_Country}}</p>
+								</td>
+<!--								<td>-->
+<!--									<p>Price</p><br>-->
+<!--									<h4>Rs.{{flight.Charge}}/-</h4>-->
+<!--									<p>per Adult</p>-->
+<!--&lt;!&ndash;									<h4>{{flight.To_city}}</h4>&ndash;&gt;-->
+<!--								</td>-->
+								<td>
+									<a href="{% url 'book_flight' dataid=flight.id %}" target="_blank">Book now</a>
+								</td>
+
+
+							</tr>
+
+
+						</table>
+						<hr>
+						{% endfor %}
+
+					</div>
+
+				</div><!--/.statistics-counter-->
+			</div><!--/.container-->
+
+		</section><!--/.service-->
+        <div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+{% endblock %}

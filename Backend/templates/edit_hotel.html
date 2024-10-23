@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Hotel</h4>
+                    <p class="card-description"> Add Hotel </p>
+                    <form class="forms-sample" method="post" action="{% url 'update_hotel' dataid=hotel.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="examplecountry">Country</label>
+                          <select class="form-control" name="country">
+                              <option>{{hotel.Country}}</option>
+                              {% for country in country %}
+                              <option>{{country.Country}}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCountry">Place</label>
+                          <select class="form-control" name="Place">
+                              <option>{{hotel.Place}}</option>
+                              {% for place in place %}
+                              <option>{{place.Place}}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCountry">Location</label>
+                        <input type="text" class="form-control" id="exampleCountry" placeholder="Add location" name="location" value="{{hotel.Location}}">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleDescription">Description</label>
+                          <textarea  class="form-control" id="exampleDescription" placeholder="Description" name="details">{{hotel.Details}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Rating</label>
+                          <textarea  class="form-control" id="exampleRating" placeholder="Rating" name="rate">{{hotel.Rating}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Hotel</label>
+                          <textarea  class="form-control" id="exampleHotel" placeholder="Hotel" name="hotel">{{hotel.Hotel}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Price</label>
+                          <textarea  class="form-control" id="examplePrice" placeholder="price" name="price">{{hotel.price}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Discount</label>
+                          <textarea  class="form-control" id="exampleDiscount" placeholder="Discount" name="discount">{{hotel.Discount}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{hotel.Image1.url}}" width="100px" height="100px"><br><br>
+                        <input type="file" name="img1" >
+                      </div>
+                       <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{hotel.Image2.url}}" width="100px" height="100px"><br><br>
+
+                        <input type="file" name="img2" >
+                      </div>
+                       <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{hotel.Image3.url}}" width="100px" height="100px"><br><br>
+
+                        <input type="file" name="img3" >
+                      </div>
+                       <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{hotel.Image4.url}}" width="100px" height="100px"><br><br>
+
+                        <input type="file" name="img4" >
+                      </div>
+
+<!--                      <div class="form-group">-->
+<!--                        <label for="examplePlace">No of place </label>-->
+<!--                        <input type="text" class="form-control" id="examplePlace" placeholder="No of place" name="no">-->
+<!--                      </div>-->
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}

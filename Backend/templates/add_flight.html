@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Flight</h4>
+                    <p class="card-description"> Add flight </p>
+                    <form class="forms-sample" method="post" action="{% url 'save_addflight' %}" >
+                        {% csrf_token %}
+
+
+
+                      <div class="form-group">
+                        <label for="exampleFrom">From</label>
+                        <input type="text" class="form-control" id="exampleFrom" placeholder="From" name="from">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDestination">To</label>
+                        <input type="text" class="form-control" id="exampleDestination" placeholder="Destination" name="Destination">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCity">From City</label>
+                        <input type="text" class="form-control" id="exampleCity" placeholder="City" name="sCity">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCountry">From Country</label>
+                        <input type="text" class="form-control" id="exampleCountry" placeholder="Country" name="sCountry">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleeCity">To City</label>
+                        <input type="text" class="form-control" id="exampleeCity" placeholder="City" name="eCity">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleeCountry">To Country</label>
+                        <input type="text" class="form-control" id="exampleeCountry" placeholder="Country" name="eCountry">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFlight">Flight</label>
+                        <input type="text" class="form-control" id="exampleFlight" placeholder="Flight" name="Flight">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFlightno">Flight No</label>
+                        <input type="text" class="form-control" id="exampleFlightno" placeholder="Flight No" name="Flightno">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDeparture">Departure</label>
+                        <input type="time" class="form-control" id="exampleDeparture" placeholder="Departure" name="Departure"><br>
+
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleArrival">Arrival</label>
+                        <input type="time" class="form-control" id="exampleArrival" placeholder="Arrival" name="Arrival"><br>
+
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCharge">Charge</label>
+                        <input type="text" class="form-control" id="exampleCharge" placeholder="Charge" name="Charge">
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning')
+            </script>
+            {% elif i.tags == 'error' %}
+                 <script>
+                    swal('{{i}}','','error')
+                 </script>
+            {% elif i.tags == 'success' %}
+                 <script>
+                     swal('{{i}}','','success')
+                 </script>
+            {% elif i.tags == 'question' %}
+                 <script>
+                     swal('{{i}}','','question')
+                 </script>
+        {% else %}
+            <script>
+                swal('{{i}}','','info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
+{% endblock %}

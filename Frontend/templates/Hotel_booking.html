@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body bgcolor="skyblue">
+<style>
+    body{
+     background-color: skyblue;
+    }
+    #page{
+        background-color: skyblue;
+    }
+    #form{
+        background-color: #fff;
+        width: 700px;
+        height: fit-content;
+        margin-top: 40px;
+        margin-left: 300px;
+
+
+    }
+    #img{
+        width: 700px;
+        height: 200px;
+    }
+    #text{
+        text-align: center;
+    }
+    #quote{
+        text-align: center;
+        font-size: small;
+    }
+    #order{
+        margin-left: 10px;
+        list-style: none;
+    }
+    #fname{
+        margin-left: 120px;
+        height: 35px;
+        width: 200px;
+
+    }
+    #lname{
+        height: 35px;
+        width: 200px;
+    }
+    #email{
+        margin-left: 100px;
+        width: 400px;
+        height: 35px;
+    }
+    #room{
+        margin-left: 120px;
+        width: 400px;
+        height: 40px;
+    }
+    #guest{
+        margin-left: 78px;
+        width: 200px;
+        height: 40px;
+
+    }
+    #date{
+        margin-left: 25px;
+        height: 40px;
+
+    }
+    #time{
+        height: 40px;
+    }
+    #ap{
+        height: 40px;
+    }
+    #out{
+        margin-left: 97px;
+        height: 40px;
+    }
+    #yes{
+        margin-left: 110px;
+    }
+    #no{
+        margin-left: 165px;
+    }
+    #flight{
+        margin-left: 120px;
+        width: 400px;
+        height: 35px;
+    }
+    #request{
+        margin-left: 160px;
+        width: 400px;
+        margin-top: -20px;
+    }
+    #fno{
+        display: none;
+    }
+    button{
+        margin-left: 280px;
+    }
+</style>
+    <div id="page">
+        <div id="form">
+            <form method="post" action="{% url 'save_hotelBooking'  %}">
+                {% csrf_token %}
+                <img src="https://www.jotform.com/uploads/ugurg/form_files/hotel-banner.63885da4032201.67905415.png" alt="Hotel booking" id="img">
+                <h3 id="text">HOTEL BOOKING</h3>
+                <p id="quote">Experience something new every moment</p><br>
+                <ul id="order">
+                    <li>
+                        <input type="hidden" name="user" value="{{request.session.Username}}">
+                    </li>
+                    <li>
+                        <input type="hidden" name="hotel"  value="{{hotel.Hotel}}">
+                    </li>
+                    <li>
+                        <div>
+                            <label >Name</label>
+
+                                <input type="text" name="fname" id="fname" placeholder="First name">
+
+                                <input type="text" name="lname" id="lname" placeholder="Last name">
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Email ID</label>
+
+                                <input type="email" name="email" id="email" placeholder="eg:email@gmail.com">
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Room</label>
+
+                                <select name="room" id="room">
+                                    <option >Please select</option>
+                                    <option >Single Room</option>
+                                    <option >Double Room</option>
+                                    <option >Family Room</option>
+                                    <option >Dorm Room</option>
+
+                                </select>
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">No. of Guest</label>
+
+                                <input type="number" name="guests" id="guest" min="0" max="10" value="0">
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Arrival Date & Time</label>
+
+                                <input type="date" name="date" id="date">
+
+                                <input type="time" name="time" id="time">
+
+                                <select name="ap" id="ap">
+                                 <option value="AM">AM</option>
+                                 <option value="">PM</option>
+
+                                </select>
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Checkout</label>
+
+
+                                <input type="date" name="out" id="out">
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div>
+                            <label for="">Pickup?</label>
+
+                                <input type="radio" name="radio" id="yes"><span>Yes-pick me up on arrival</span><br>
+                                <input type="radio" name="radio" id="no"><span>No</span>
+
+
+                        </div>
+                    </li><br>
+                    <li>
+                        <div id="fno">
+                            <label for="">Flight</label>
+
+                                <input type="text" name="flight" id="flight" placeholder="Flight No">
+
+                        </div>
+                    </li><br>
+
+                    <li>
+                        <div>
+                            <label for="">Special Request</label>
+                            <div>
+                            <textarea name="request" id="request" cols="30" rows="10">
+
+                            </textarea>
+                        </div>
+                        </div>
+                    </li><br>
+                    <li>
+                        <input type="hidden" name="price" id="price" value="{{hotel.price}}">
+                        <input type="hidden" name="tprice" id="tprice">
+                    </li>
+                </ul>
+                <button class="btn btn-primary"  type="submit">Confirm</button><br><br>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#yes").click(function(){
+                $("#fno").show()
+            })
+            $("#no").click(function(){
+                $("#fno").hide()
+            })
+            $("#guest").change(function(){
+                x = 480
+                y = document.getElementById("guest").value
+                z = document.getElementById("price").value
+                result = (x*y)
+                total = result+Number(z)
+                document.getElementById("tprice").value = total
+
+            })
+        })
+    </script>
+
+
+</body>
+</html>

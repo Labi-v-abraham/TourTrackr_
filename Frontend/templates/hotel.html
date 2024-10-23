@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+		<section id="service" class="service" style="background-image: url(https://images.moneycontrol.com/static-mcnews/2021/04/Roof-top-pool-2-taj-goa-770x433.jpg?impolicy=website&width=770&height=431);
+			background-repeat: no-repeat;background-size:cover;background-position: center">
+			<div class="container">
+
+				<div class="service-counter text-center">
+
+					<div>
+<!--						{% for hotel in hotel %}-->
+<!--						<h3>Hotels in {{hotel.Place}}</h3><br>-->
+<!--						{% endfor %}-->
+						<br>
+						<h2>Hotels</h2>
+						<hr>
+						{% for hotel in hotel %}
+						<table width="100%" style="background-color: #fff;">
+
+
+
+
+							<tr >
+								<td width="200px" >
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">
+									<img src="{{hotel.Image1.url}}" width="200px" height="250px">
+									</a>
+								</td>
+								<td style="text-align:left;padding-left:50px">
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">
+									<h4>{{hotel.Hotel}}</h4>
+									</a><br><br>
+									<h5 class="fa fa-star"> {{hotel.Rating}} Star Rating</h5>
+									<h5 class="fa fa-cutlery" style="margin-left: 50px;"> include</h5><br><br>
+									<p class="fa fa-map-marker">{{hotel.Location}}</p>
+								</td>
+								<td >
+<!--									<h4>Rs.{{hotel.price}}</h4><br>-->
+<!--									<p>per night</p>-->
+									<a href="{% url 'select_hotel' dataid=hotel.id %}">Show Deatils</a>
+								</td>
+
+							</tr><br>
+
+
+						</table>
+						<hr>
+						{% endfor %}
+
+					</div>
+
+				</div><!--/.statistics-counter-->
+			</div><!--/.container-->
+
+		</section><!--/.service-->
+        <div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+{% endblock %}

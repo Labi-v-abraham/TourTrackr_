@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Special offers</h4>
+                    <p class="card-description"> Add Offers </p>
+                    <form class="forms-sample" method="post" action="{% url 'update_offer' dataid=offers.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleCountry">Country</label>
+                          <select class="form-control" name="country">
+                              <option>{{offers.Country}}</option>
+                              {% for country in country %}
+                              <option>{{country.Country}}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleCountry">Place</label>
+                        <input type="text" class="form-control" id="exampleCountry" placeholder="Add Place" name="Place" value="{{offers.Place}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Description</label>
+                          <textarea  class="form-control" id="exampleDescription" placeholder="Description" name="details">{{offers.Details}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Rating</label>
+                          <input type="text" class="form-control" id="exampleRating" placeholder="Rating" name="rate" value="{{offers.Rating}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Hotel</label>
+                          <input type="text" class="form-control" id="exampleHotel" placeholder="Hotel" name="hotel" value="{{offers.Hotel}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Price</label>
+                          <input   type="text" class="form-control" id="examplePrice" placeholder="price" name="price" value="{{offers.price}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleDescription">Discount</label>
+                          <input  type="text" class="form-control" id="exampleDiscount" placeholder="Discount" name="discount" value="{{offers.Discount}}">
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{offers.Image1.url}}" width="100px" height="100px">
+                        <input type="file" name="img1" >
+                      </div>
+                       <div class="form-group">
+
+                        <label>File upload</label><br><br>
+                           <img src="{{offers.Image2.url}}" width="100px" height="100px">
+
+                        <input type="file" name="img2" >
+                      </div>
+                       <div class="form-group">
+                        <label>File upload</label><br><br>
+                          <img src="{{offers.Image3.url}}" width="100px" height="100px">
+
+                        <input type="file" name="img3" >
+                      </div>
+                       <div class="form-group">
+                        <label>File upload</label><br><br>
+                           <img src="{{offers.Image4.url}}" width="100px" height="100px">
+
+                        <input type="file" name="img4" >
+                      </div>
+
+<!--                      <div class="form-group">-->
+<!--                        <label for="examplePlace">No of place </label>-->
+<!--                        <input type="text" class="form-control" id="examplePlace" placeholder="No of place" name="no">-->
+<!--                      </div>-->
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Dispaly flight</h4>
+<!--                    <p class="card-description"> Add class <code>.table-striped</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> From </th>
+                            <th> To </th>
+                            <th> From_City </th>
+                            <th> From_country </th>
+                            <th> To_city </th>
+                            <th> To_Country </th>
+                            <th> Flight_name </th>
+                            <th> Flight_No </th>
+                            <th> Depature_time </th>
+                            <th> Landing_time </th>
+                            <th> Charge </th>
+
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for flight in flight %}
+                          <tr>
+                            <td>{{flight.From}}</td>
+                            <td>{{flight.To}}</td>
+                            <td>{{flight.From_City}}</td>
+                            <td>{{flight.From_country}}</td>
+                            <td>{{flight.To_city}}</td>
+                            <td>{{flight.To_Country}}</td>
+                            <td>{{flight.Flight_name}}</td>
+                            <td>{{flight.Flight_No}}</td>
+                            <td>{{flight.Depature_time}}</td>
+                            <td>{{flight.Landing_time}}</td>
+                            <td>{{flight.Charge}}</td>
+                            <td>
+                              <form action="">
+                                <button class="btn btn-danger">Edit</button>
+                              </form>
+                            </td>
+                            <td>
+                              <form action="">
+                                <button class="btn btn-light">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning')
+            </script>
+            {% elif i.tags == 'error' %}
+                 <script>
+                    swal('{{i}}','','error')
+                 </script>
+            {% elif i.tags == 'success' %}
+                 <script>
+                     swal('{{i}}','','success')
+                 </script>
+            {% elif i.tags == 'question' %}
+                 <script>
+                     swal('{{i}}','','question')
+                 </script>
+        {% else %}
+            <script>
+                swal('{{i}}','','info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
+{% endblock %}
